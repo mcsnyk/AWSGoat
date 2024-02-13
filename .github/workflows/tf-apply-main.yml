@@ -68,6 +68,8 @@ jobs:
       run: | 
         cd modules/${{ github.event.inputs.module }}
         terraform plan -input=false
+        terraform plan -out tf.plan
+        terraform show -json tf.plan > plan.json
       continue-on-error: false
       
     - name: Terraform Plan Status
@@ -76,8 +78,6 @@ jobs:
 
     - name: Mimics scan
       run: |
-        terraform plan -out tf.plan
-        terraform show -json tf.plan > plan.json
         
         wget https://artifacts.rapid7.com/cloudsec/mimics/v1.2.5/mimics_1.2.5_linux_amd64 -O $(Agent.ToolsDirectory)/mimics
         chmod +x $(Agent.ToolsDirectory)/mimics
