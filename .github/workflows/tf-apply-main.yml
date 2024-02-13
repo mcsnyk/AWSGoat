@@ -83,10 +83,6 @@ jobs:
         chmod +x ./mimics
         pwd
         ls -ll
-
-        cd modules/${{ github.event.inputs.module }}
-        pwd
-        ls -ll
         
         ./mimics scan /modules/${{ github.event.inputs.module }}  \
         --api-key ${{ secrets.ics_api_key }}  \
@@ -98,6 +94,10 @@ jobs:
         --ics-config "ICS Demo NIST DEV Warn"  \
         --no-fail  \
         --verbose
+
+        cd /home/runner/work/AWSGoat/AWSGoat/mimics
+        ls -ll
+        pwd
     
     #- name: Terraform Apply
       #run: | 
