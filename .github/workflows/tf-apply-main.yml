@@ -88,9 +88,12 @@ jobs:
         --log-format json  \
         --report-formats all  \
         --report-name findings  \
-        --ics-config "ICS Demo NIST DEV Warn"  \
+        --ics-config "AWS CIS Benchmark 1.4"  \
         --no-fail  \
         --verbose
+
+        ls -ll
+        
     
     #- name: Terraform Apply
       #run: | 
