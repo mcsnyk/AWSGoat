@@ -1,6 +1,5 @@
 name: 'Terraform Apply'
 
-
 on:
   workflow_dispatch:
     inputs:
@@ -74,6 +73,13 @@ jobs:
     - name: Terraform Plan Status
       if: steps.plan.outcome == 'failure'
       run: exit 1
+
+    - name: Scan the repository
+      uses: rapid7/insightcloudsec-actions@v2
+      with:
+        api_key: ${{ secrets.ics_api_key }}
+        base_url: ${{ secrets.ics_base_url }}
+        config_name: AWS CIS Benchmark 1.4
     
     - name: Terraform Apply
       run: | 
