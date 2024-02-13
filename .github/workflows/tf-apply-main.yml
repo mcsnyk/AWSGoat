@@ -53,6 +53,7 @@ jobs:
     - name: Terraform Init
       run: | 
         cd modules/${{ github.event.inputs.module }}
+        pwd
         terraform init 
         
     # Installs boto3
