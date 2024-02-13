@@ -74,28 +74,30 @@ jobs:
       if: steps.plan.outcome == 'failure'
       run: exit 1
 
-    - name: Scan the repository
-      uses: rapid7/insightcloudsec-actions@v2
-      with:
-        api_key: ${{ secrets.ics_api_key }}
-        base_url: ${{ secrets.ics_base_url }}
-        config_name: AWS CIS Benchmark 1.4
+    - name: Mimics scan
+      run: |
+        terraform plan -out tf.plan
+        terraform show -json tf.plan > plan.json
+        
+        wget https://artifacts.rapid7.com/cloudsec/mimics/v1.2.5/mimics_1.2.5_linux_amd64 -O $(Agent.ToolsDirectory)/mimics
+        chmod +x $(Agent.ToolsDirectory)/mimics
+        ls-ltr
     
-    - name: Terraform Apply
-      run: | 
-        cd modules/${{ github.event.inputs.module }}
-        terraform apply -auto-approve -input=false
-      continue-on-error: false
+    #- name: Terraform Apply
+      #run: | 
+        #cd modules/${{ github.event.inputs.module }}
+        #terraform apply -auto-approve -input=false
+      #continue-on-error: false
 
     # Copy tfstate file to s3 bucket
-    - name: Copy terraform.tfstate file to s3bucket
-      if: always()
-      run: |
-        cd modules/${{ github.event.inputs.module }}
-        aws s3 cp ./terraform.tfstate s3://do-not-delete-awsgoat-state-files-${{ steps.account.outputs.ACCOUNT_ID }}/terraform.tfstate 
+    #- name: Copy terraform.tfstate file to s3bucket
+      #if: always()
+      #run: |
+        #cd modules/${{ github.event.inputs.module }}
+        #aws s3 cp ./terraform.tfstate s3://do-not-delete-awsgoat-state-files-${{ steps.account.outputs.ACCOUNT_ID }}/terraform.tfstate 
 
     # Terraform Output the API Gateway url
-    - name: Application URL
-      run: |
-        cd modules/${{ github.event.inputs.module }}
-        terraform output
+    #- name: Application URL
+      #run: |
+        #cd modules/${{ github.event.inputs.module }}
+        #terraform output
