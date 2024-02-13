@@ -81,6 +81,12 @@ jobs:
         
         wget https://artifacts.rapid7.com/cloudsec/mimics/v1.2.5/mimics_1.2.5_linux_amd64 -O ./mimics
         chmod +x ./mimics
+        pwd
+        ls -ll
+
+        cd modules/${{ github.event.inputs.module }}
+        pwd
+        ls -ll
         
         ./mimics scan /modules/${{ github.event.inputs.module }}  \
         --api-key ${{ secrets.ics_api_key }}  \
