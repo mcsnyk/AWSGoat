@@ -78,7 +78,7 @@ jobs:
 
     - name: Mimics scan
       run: |
-        wget https://artifacts.rapid7.com/cloudsec/mimics/v1.2.5/mimics_1.2.5_linux_amd64 -O ./mimics
+        wget https://artifacts.rapid7.com/cloudsec/mimics/latest/mimics_latest_linux_amd64 -O ./mimics
         chmod +x ./mimics
         
         ./mimics scan /home/runner/work/AWSGoat/AWSGoat/modules/${{ github.event.inputs.module }}  \
