@@ -90,7 +90,7 @@ jobs:
         --report-name findings  \
         --ics-config "AWS CIS Benchmark 1.4"  \
         --no-fail  \
-        --verbose
+        -save-report  \
 
         zip findings.zip findings.html findings.sarif findings.xml
 
