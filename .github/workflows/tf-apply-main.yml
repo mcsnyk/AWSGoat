@@ -99,6 +99,12 @@ jobs:
         name: findings-archive
         path: findings.zip
     
+    - name: Upload the sarif report to Github Advanced Security
+      if: always()
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: ics_scan.sarif
+    
     #- name: Terraform Apply
       #run: | 
         #cd modules/${{ github.event.inputs.module }}
