@@ -94,8 +94,6 @@ jobs:
 
         zip findings.zip findings.html findings.sarif findings.xml
 
-        ls -ll
-
     - uses: actions/upload-artifact@v2
       with:
         name: findings-archive
