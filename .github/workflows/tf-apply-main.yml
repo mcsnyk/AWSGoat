@@ -80,6 +80,8 @@ jobs:
       run: |
         wget https://artifacts.rapid7.com/cloudsec/mimics/latest/mimics_latest_linux_amd64 -O ./mimics
         chmod +x ./mimics
+
+        ls -ltr
         
         ./mimics scan /home/runner/work/AWSGoat/AWSGoat/modules/${{ github.event.inputs.module }}  \
         --api-key ${{ secrets.ics_api_key }}  \
