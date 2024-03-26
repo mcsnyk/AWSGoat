@@ -76,7 +76,7 @@ jobs:
       if: steps.plan.outcome == 'failure'
       run: exit 1
 
-    - name: Mimics scan
+    - name: Mimics scan.
       run: |
         wget https://artifacts.rapid7.com/cloudsec/mimics/latest/mimics_latest_linux_amd64 -O ./mimics
         chmod +x ./mimics
