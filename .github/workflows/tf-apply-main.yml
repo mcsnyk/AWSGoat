@@ -90,7 +90,7 @@ jobs:
         --log-format json  \
         --report-formats all  \
         --report-name findings  \
-        --ics-config "AWS CIS Benchmark 1.4"  \
+        --ics-config "AWS CIS Benchmark 1.4M"  \
         --no-fail  \
         --save-report
 
