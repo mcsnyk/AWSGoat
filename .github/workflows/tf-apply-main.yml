@@ -86,6 +86,7 @@ jobs:
         ./mimics scan /home/runner/work/AWSGoat/AWSGoat/modules/${{ github.event.inputs.module }}  \
         --api-key ${{ secrets.ics_api_key }}  \
         --base-url ${{ secrets.ics_base_url }}  \
+        --scan-target "custom_name"  \
         --no-verify  \
         --log-format json  \
         --report-formats all  \
