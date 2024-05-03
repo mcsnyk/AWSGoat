@@ -82,6 +82,12 @@ jobs:
         chmod +x ./mimics
 
         ls -ltr
+
+        ./mimics ics-config list
+        --api-key ${{ secrets.ics_api_key }}  \
+        --base-url ${{ secrets.ics_base_url }}
+
+        echo "============="
         
         ./mimics scan /home/runner/work/AWSGoat/AWSGoat/modules/${{ github.event.inputs.module }}  \
         --api-key ${{ secrets.ics_api_key }}  \
